@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+
+######################
+# Floonet Containers #
+######################
+
+  grin-floonet:
+    image: grin
+    container_name: grin-floonet
+    build:
+      context: ${PWD}/grin/
+      dockerfile: ${PWD}/grin/etc/Dockerfile.floonet
+    volumes:
+    ##This still needs to be edited probably
+      - ${PWD}/grin-floonet-data:/root/.grin
+    
+    entrypoint: ["node-start.sh"]
+    restart: always
+    expose:
+     - "13413"  # floonet
+     - "13414"  # floonet
+     - "13415"  # floonet
+     - "13416"  # floonet Stratum 
+    ports:
+     - "13413:13413"   # floonet
+     - "13414:13414"   # floonet
+     - "13415:13415"   # floonet
+     - "13416:13416"   # floonet Stratum
